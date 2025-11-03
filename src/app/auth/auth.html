@@ -1,0 +1,52 @@
+<form
+  [formGroup]="isLoginMode ? loginForm : signUpForm"
+  class="signUpForm"
+  (ngSubmit)="isLoginMode ? onLogInUser() : onCreateUser()"
+>
+  <h2 class="form-title">
+    {{ isLoginMode ? 'Welcome Back' : 'Create  Account' }}
+  </h2>
+  <div *ngIf="!isLoginMode">
+    <div class="input-group">
+      <input id="firstName" type="text" formControlName="firstName" />
+      <label for="firstName">First Name</label>
+    </div>
+
+    <div class="input-group">
+      <input id="lastName" type="text" formControlName="lastName" />
+      <label for="lastName">Last Name</label>
+    </div>
+
+    <div class="input-group">
+      <input id="userName" type="text" formControlName="userName" />
+      <label for="userName">User Name</label>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <input id="email" type="email" formControlName="email" />
+    <label for="email">Email</label>
+  </div>
+
+  <div class="input-group">
+    <input id="password" type="password" formControlName="password" />
+    <label for="password">Password</label>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="isLoginMode ? loginForm.invalid : signUpForm.invalid"
+    class="submit-btn"
+  >
+    {{ isLoginMode ? 'Sign In' : 'Sign Up' }}
+  </button>
+
+  <hr class="divider" />
+
+  <div class="social-login">
+    <div class="continue-inline">
+      <span class="continue-text">Continue with</span>
+      <img src="/google.png" alt="Google logo" class="google-icon" />
+    </div>
+  </div>
+</form>

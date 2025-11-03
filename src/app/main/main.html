@@ -1,0 +1,35 @@
+<div id="greetings-container" *ngIf="user">
+  <p class="greet-line1">Hey {{ user.userName }} </p>
+  <p class="greet-line2">Having an amazing Day!</p>
+</div>
+
+<div id="nav-container">
+
+  <ul>
+    <li>
+      <a routerLink="/main/dashboard" routerLinkActive="active-link">
+        <img src="{{ dashPic }}" alt="Dashboard" />
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/main/devices" routerLinkActive="active-link">
+        <img src="{{ devicePic }}" alt="Devices" />
+        <span>Devices</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/main/add" routerLinkActive="active-link">
+        <img src="{{ addPic }}" alt="Add" />
+        <span>Info</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/main/notifications" routerLinkActive="active-link">
+        <img src="{{ notificationPic }}" alt="Notifications" />
+        <span>Notifications</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>

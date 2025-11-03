@@ -1,0 +1,62 @@
+
+
+<div class="userProfile" [class.expanded]="expandProfile" (click)="onClickProfile()">
+  <img [src]="profilePic" alt="Profile" class="profile-pic" />
+  <div class="profile-details" *ngIf="expandProfile">
+    <h3>First Name: {{ user.firstName }} <br>Last Name: {{ user.lastName }}</h3>
+    <p>Email: {{ user.email }}</p>
+    <p>My Location: {{ latestLocation }}  
+      <a>
+
+        <img [src]="locationPic" class="locationPic" alt="Live" (click)="goToUserLocation()"> 
+      </a>
+    </p>
+    <p>PIN: {{user.pin}}</p>
+  </div>
+</div>
+
+<button class="track-btn" (click)="showPinInput = !showPinInput">Track Device</button>
+
+<div class="pin-input-container" *ngIf="showPinInput">
+  <div class="pin-boxes">
+    <input maxlength="1" type="text"  class="pin-box" *ngFor="let box of [0, 1, 2, 3, 4, 5]; let i = index" (input)="updatePin($event, i)" (keydown)="movePrev($event)" />
+  </div>
+ 
+</div>
+<button id="enterBtn" (click)="onEnterPin()" *ngIf="showPinInput">Enter</button>
+
+
+<div *ngIf="statusMessage" class="status-message" [ngClass]="statusType">
+  {{ statusMessage }}
+</div>
+
+
+<div class="dashboard-container" *ngIf="user">
+  <div class="loader"></div>
+</div>
+
+
+
+<div class="trackingDevicesContainer" *ngIf="trackingDevices.length > 0; " >
+  <h2 class="liveDevices">Live Location</h2>
+  
+  
+    <div *ngFor="let t of trackingDevices" class="tracked-user">
+      <ng-container *ngIf="t.LatestLocation && t.LatestLocation.length > 0; else noLocation ">
+        <p>{{ t.User.userName }} — Location: {{ t.LatestLocation[0].location }}
+        <a>
+            <img [src]="locationPic" class="locationPic" alt="Live"> 
+          </a>
+        </p>
+        <hr class="location-divider">
+      </ng-container>
+  
+      <ng-template #noLocation>
+        <p class="no-location">
+          {{ t.User.userName }} has no location available
+
+        </p>
+        <hr class="location-divider">
+      </ng-template>
+  </div>
+ </div>

@@ -1,0 +1,28 @@
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .map-frame {
+    height: 100%;
+  }
+  
+  #map {
+    height: 80%;
+  }
+  .blinking-label {
+    text-align: center;
+    pointer-events: none;
+  }
+  
+  .nearestDevice {
+    font-weight: bold;
+    color: red;
+    animation: blink 1s infinite;
+  }
+  
+  
+  
