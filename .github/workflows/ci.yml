@@ -2,7 +2,6 @@ name: Tracking-app-frontend
 
 on:
 push:
-push:
     branches:
       - main
       - develop
