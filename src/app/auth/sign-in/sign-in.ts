@@ -47,7 +47,7 @@ export class SignIn {
             localStorage.setItem('user', JSON.stringify(response.user));
       console.log('User stored successfully:', response.user);
           }
-          this.router.navigate(['/main']);
+          this.router.navigate(['/dashboard']);
         },
         error: (error: any) => {
           console.log(error);
