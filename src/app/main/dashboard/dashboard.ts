@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MainService } from './../main-service';
@@ -9,7 +9,7 @@ import { MainService } from './../main-service';
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
   uploadPic = '/camera.png';
   name: any[] = [];
   model: any[] = [];
