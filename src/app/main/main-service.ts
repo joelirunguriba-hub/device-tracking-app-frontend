@@ -19,7 +19,7 @@ export class MainService {
   addNewDevice(device: NewDevice, userId: string): Observable<NewDevice> {
     console.log("Adding new device:", device);
   
-    const addDeviceUrl = `http://localhost:4000/api/devices/registerMyDevice/${userId}`;
+    const addDeviceUrl = `https://tracking-app-3.onrender.com/api/devices/registerMyDevice/${userId}`;
     return this.http.post<NewDevice>(addDeviceUrl, device);
   }
   
