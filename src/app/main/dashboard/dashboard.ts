@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MainService } from './../main-service';
+import { LocationService } from './../../map/location-service';
 
 @Component({
   selector: 'app-dashboard',
   imports: [CommonModule],
-  templateUrl: './dashboard.html',
+templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })
 export class Dashboard implements OnInit {
@@ -16,9 +17,11 @@ export class Dashboard implements OnInit {
   devices: any[] = [];
   imageSrc: string | null = null;
 
-  constructor(private router: Router, private mainService: MainService) {}
+  constructor(private router: Router, private mainService: MainService, private locationService: LocationService) {}
   ngOnInit() {
     this.getAllDevices();
+    this.locationService.watchLocationOnInit('');
+
   }
   goToMap() {
     this.router.navigate(['/map']);
