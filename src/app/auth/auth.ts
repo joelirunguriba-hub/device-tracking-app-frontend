@@ -7,24 +7,23 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth-service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+import { LoadingSpinner} from '../loading-spinner/loading-spinner'
+
 @Component({
   selector: 'app-auth',
-  standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
-
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule, LoadingSpinner],
   templateUrl: './auth.html',
-  styleUrls: ['./auth.css'],
+  styleUrl: './auth.css',
 })
 export class Auth {
   googleLogo = '/google.png';
   isLoginMode = false;
-
+  loading = false;
   signUpForm: FormGroup;
   loginForm!: FormGroup;
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
@@ -44,6 +43,7 @@ export class Auth {
 
   onCreateUser() {
     if (this.signUpForm.valid) {
+      this.loading=true;
       const userData = this.signUpForm.value;
 
       this.authService.registerUser(userData).subscribe({
@@ -67,6 +67,7 @@ export class Auth {
           console.error('Error creating user:', error);
         },
         complete: () => {
+          this.loading=false;
           console.log('User created success.');
         },
       });
@@ -76,7 +77,9 @@ export class Auth {
   }
   onLogInUser() {
     if (this.loginForm.valid) {
+
       const user = this.loginForm.value;
+      this.loading=true;
       this.authService.logInUser(user).subscribe({
         next: (response: any) => {
           console.log('log in sucess', response);
@@ -86,6 +89,7 @@ export class Auth {
             localStorage.setItem('user', JSON.stringify(response.user));
       console.log('User stored successfully:', response.user);
           }
+          this.loading=true;
           this.router.navigate(['/main']);
         },
         error: (error: any) => {
@@ -93,6 +97,7 @@ export class Auth {
         },
         complete: () => {
           console.log('Completed log in');
+          this.loading=false;
         },
       });
     }
