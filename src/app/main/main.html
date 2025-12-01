@@ -1,0 +1,50 @@
+<app-back-button></app-back-button>
+<div *ngIf="user; else defaultGreeting" id="greetings-container">
+  <p class="greet-line1">Hey {{ user.userName }} </p>
+  <p class="greet-line2">Having an amazing Day!</p>
+</div>
+
+<ng-template #defaultGreeting>
+  <div id="greetings-container">
+    <p class="greet-line1">Hey Guest</p>
+    <p class="greet-line2">Welcome to the I-track</p>
+  </div>
+</ng-template>
+<hr class="nav-divider">
+
+<div id="nav-container">
+  <ul>
+    <li>
+      <a routerLink="/main/dashboard" routerLinkActive="active-link">
+        <img src="{{ dashPic }}" alt="Dashboard" />
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/main/devices" routerLinkActive="active-link">
+        <img src="{{ devicePic }}" alt="Devices" />
+        <span>Devices</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/main/add" routerLinkActive="active-link" class="profile-pic">
+        <img src="{{  profilePic }}" alt="Add" />
+        <span>Info</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/main/notifications" routerLinkActive="active-link">
+        <img src="{{ notificationPic }}" alt="Notifications" />
+        <span>Notifications</span>
+      </a>
+    </li>
+
+  </ul>
+ 
+  <hr class="nav-divider">
+
+</div>
+<router-outlet></router-outlet>
+
+
+

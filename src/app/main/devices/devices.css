@@ -1,0 +1,213 @@
+
+.addDeviceForm{
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 8px 8px 16px #141414, -8px -8px 16px #202020;
+
+}
+ #addBtn {
+  margin-left: 25%;
+  color: #9e940d;
+  padding: 0.7em 1.7em;
+  background: #2112a7;
+  font-size: 18px;
+  border-radius: 0.5em;
+  cursor: pointer;
+  border: 1px solid #161816;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #3b3a3a, -6px -6px 12px #222121;
+}
+#addBtn:not(:disabled):hover {
+  background: #2112a7;
+}
+
+#addBtn:disabled {
+  background: #2b2970;
+  opacity: 0.6;        
+  cursor: not-allowed; 
+  box-shadow: none;    
+}
+
+    .addDeviceForm p{
+      margin-left: 25%;
+      margin-bottom: 10%;
+      font-family: "Poppins", sans-serif;
+      color: #9e940d;
+      font-size: 1.2rem;
+   
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    
+    .input-group input {
+      width: 94%;
+      left: 5%;
+      padding: 12px 10px;
+      font-size: .97rem;
+      border: none;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+      background: transparent;
+      color: #fafafa;
+      outline: none;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      font-family: inherit;
+    }
+    
+    .input-group label {
+      position: absolute;
+      left: 10px;
+      top: 12px;
+      color: rgba(225, 211, 204, 0.6);
+      font-size: 0.9rem;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+  
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: -8px;
+      left: 5px;
+      font-size: 1rem;
+      padding: 0 4px;
+    }
+    
+    .input-group input:focus {
+      border-bottom: 2px solid  #9e940d;;
+      background: rgba(14, 0, 4, 0.05);
+    }
+    
+    .input-group input::placeholder {
+      color: transparent;
+    }
+
+    .device-button-wrapper {
+  display: flex;
+  gap: 1px; 
+  margin-top: 5%;
+}
+  
+    .openDeviceFormBtn{
+      margin-left: 7%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #9e940d;
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+  #AddDeviceimg {
+    margin-bottom: 10px;
+    background: transparent;
+    width: 34px;
+    height: 30px;
+    opacity: 0.85;
+    filter: brightness(0.8) contrast(0.9);
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .openDeviceFormBtn span {
+    margin-top: 5px;          
+    font-family: "Poppins", sans-serif;
+  }
+  .openDeviceFormBtn svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  #myDevices{
+    letter-spacing: 20px;
+    margin-top: 5%;
+    margin-left: 10%;
+    font-family: "Poppins", sans-serif;
+    color: #9e940d;
+    font-size: 1.5rem;
+  }
+  .nav-divider {
+  width: 100%;
+  margin: 14px auto 0 auto;
+  height: 1px;
+  border: none;
+  background: #44403c;
+  opacity: 0.9;
+  }
+.container {
+  position: relative; 
+  margin-top: 4%;
+  margin-left: 6%;
+  width: 250px;
+  height: 330px;
+  box-shadow: 6px 6px 12px #3b3a3a, -6px -6px 12px #222121;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: #4449d3;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.data {
+  margin-top: 1px;
+width: 90%;
+  border-radius: 5px;
+  box-shadow: 6px 6px 12px #3b3a3a, -6px -6px 12px #222121;
+  color: #b68f10;
+  text-align: center;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.active-text {
+  font-size: 1.8em;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.stat-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 6px;
+ padding: 12px;
+  box-shadow: 0 2px 4px rgba(202, 173, 8, 0.08);
+  
+  margin-top: 2%;
+}
+.absolute-upload-btn {
+  position: absolute;
+  bottom: 10px;   
+  left: 10px;   
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.absolute-upload-btn .upload-icon {
+  width: 45px;
+  height: 78px;
+  object-fit: cover;
+  filter: brightness(0.9);
+  border-radius: 6px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+.absolute-upload-btn:hover .upload-icon {
+  transform: scale(1.15);
+  filter: brightness(1);
+  opacity: 1;
+}

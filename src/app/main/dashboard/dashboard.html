@@ -1,0 +1,25 @@
+
+<h1 class="title">Registred Devices</h1>
+
+
+<div class="wrapper">
+    <div class="card" *ngFor="let device of devices">
+      <button class="absolute-upload-btn" (click)="fileInput.click()">
+        <img [src]="uploadPic" alt="Upload" class="upload-icon">
+      </button>
+      <input 
+        type="file" 
+        #fileInput 
+        accept="image/*" 
+        style="display:none" 
+        (change)="onFileSelected($event)" 
+      />
+      <img *ngIf="imageSrc" [src]="imageSrc" alt="Uploaded Image" class="device-image" />
+      <div class="info">
+        <h1>{{ device.name }}</h1>
+        <p>{{ device.model }}</p>
+        <button (click)="goToMap()">Location</button>
+      </div>
+    </div>
+  </div>
+  
