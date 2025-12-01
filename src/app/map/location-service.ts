@@ -15,14 +15,22 @@ export class LocationService  {
 
   private socket: Socket;
   constructor(private http:HttpClient, private mainService: MainService) { 
+<<<<<<< HEAD
     this.socket = io('https://tracking-app-backend-g3al.onrender.com/');
+=======
+    this.socket = io('http://localhost:4000/');
+>>>>>>> 7151a6d6df44f67623c2c610c3957c1b6ef9a64a
   } 
   
   protected map=signal("Waiting for user Location");
   
  getLocation(device:DeviceInfo ):Observable<DeviceInfo>{
   console.log("Getting Location from Service",);
+<<<<<<< HEAD
   return this.http.get<DeviceInfo>(`https://tracking-app-backend-g3al.onrender.com/api/devices/getMyDeviceInfo/${device._id}`);
+=======
+  return this.http.get<DeviceInfo>(`https://tracking-app-3.onrender.com/api/devices/getMyDeviceInfo/${device._id}`);
+>>>>>>> 7151a6d6df44f67623c2c610c3957c1b6ef9a64a
  }
 
 
@@ -54,7 +62,13 @@ export class LocationService  {
 watchLocationOnInit(_id:string):void{
  const userId=localStorage.getItem('userId')!
 
+<<<<<<< HEAD
     this.mainService.getUserById(userId).subscribe(
+=======
+
+    this.mainService.getUserById(userId).subscribe(
+      
+>>>>>>> 7151a6d6df44f67623c2c610c3957c1b6ef9a64a
       (user: any) => {
         console.log("User found for location",user);
         
@@ -88,7 +102,11 @@ watchLocationOnInit(_id:string):void{
       console.error('Error watching location changes:', error);
     },
     
+<<<<<<< HEAD
     { enableHighAccuracy: true, maximumAge: 0, timeout: 50000 });
+=======
+    { enableHighAccuracy: true, maximumAge: 0, timeout: 5000 });
+>>>>>>> 7151a6d6df44f67623c2c610c3957c1b6ef9a64a
 },
 
       (error: any) => {
