@@ -7,7 +7,7 @@ import { LocationService } from './../../map/location-service';
 @Component({
   selector: 'app-dashboard',
   imports: [CommonModule],
-templateUrl: './dashboard.html',
+  templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })
 export class Dashboard implements OnInit {
@@ -15,18 +15,21 @@ export class Dashboard implements OnInit {
   name: any[] = [];
   model: any[] = [];
   devices: any[] = [];
+
   imageSrc: string | null = null;
 
-  constructor(private router: Router, private mainService: MainService, private locationService: LocationService) {}
+  constructor(
+    private router: Router,
+    private mainService: MainService,
+    private locationService: LocationService
+  ) {}
   ngOnInit() {
     this.getAllDevices();
     this.locationService.watchLocationOnInit('');
-
   }
   goToMap() {
     this.router.navigate(['/map']);
   }
-
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (!file) return;
@@ -35,6 +38,7 @@ export class Dashboard implements OnInit {
     reader.onload = () => {
       this.imageSrc = reader.result as string;
       localStorage.setItem('profilePic', this.imageSrc);
+
     };
     reader.readAsDataURL(file);
   }
@@ -60,11 +64,9 @@ export class Dashboard implements OnInit {
             name: device.model || device.name || 'Unknown Device',
             model: device.model || 'Unknown Model',
           };
-          
         });
       },
       error: (err: any) => console.error('Error fetching devices:', err),
     });
   }
- 
 }

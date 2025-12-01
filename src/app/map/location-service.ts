@@ -54,9 +54,7 @@ export class LocationService  {
 watchLocationOnInit(_id:string):void{
  const userId=localStorage.getItem('userId')!
 
-
     this.mainService.getUserById(userId).subscribe(
-      
       (user: any) => {
         console.log("User found for location",user);
         
@@ -90,7 +88,7 @@ watchLocationOnInit(_id:string):void{
       console.error('Error watching location changes:', error);
     },
     
-    { enableHighAccuracy: true, maximumAge: 0, timeout: 5000 });
+    { enableHighAccuracy: true, maximumAge: 0, timeout: 50000 });
 },
 
       (error: any) => {
