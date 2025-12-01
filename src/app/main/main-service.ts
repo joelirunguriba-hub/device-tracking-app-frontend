@@ -10,16 +10,15 @@ import { Socket } from 'socket.io-client';
   providedIn: 'root'
 })
 export class MainService {
-  private globalUrl='http://localhost:4000/api/getUser';
+  private globalUrl='https://tracking-app-backend-g3al.onrender.com/api/getUser';
   
   constructor(private http: HttpClient){}
-
 
 
   addNewDevice(device: NewDevice, userId: string): Observable<NewDevice> {
     console.log("Adding new device:", device);
   
-    const addDeviceUrl = `http://localhost:4000/api/devices/registerMyDevice/${userId}`;
+    const addDeviceUrl = `https://tracking-app-backend-g3al.onrender.com/api/devices/registerMyDevice/${userId}`;
     return this.http.post<NewDevice>(addDeviceUrl, device);
   }
   
@@ -29,12 +28,12 @@ export class MainService {
    }
 
 getUserDataByPin(pin: string): Observable<User> {
-  const getUserByPinUrl = `http://localhost:4000/api/getUserByPin/${pin}`;
+  const getUserByPinUrl = `https://tracking-app-backend-g3al.onrender.com/api/getUserByPin/${pin}`;
   return this.http.get<User>(getUserByPinUrl);
 }
 
 editDeviceById(deviceId: string, updatedDevice: NewDevice): Observable<NewDevice> {
-  const editDeviceUrl = `http://localhost:4000/api/devices/editDevice/${deviceId}`;
+  const editDeviceUrl = `https://tracking-app-backend-g3al.onrender.com/api/devices/editDevice/${deviceId}`;
   return this.http.put<NewDevice>(editDeviceUrl, updatedDevice);
 }
 }
