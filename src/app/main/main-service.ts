@@ -20,6 +20,11 @@ export class MainService {
       Authorization: `Bearer ${token}`
     };
     const addDeviceUrl = `https://tracking-app-backend-g3al.onrender.com/api/devices/registerMyDevice/${userId}`;
+    
+    if (!token) {
+      window.location.href = "https://device-tracking-app-frontend-xi.vercel.app/about";
+   return EMPTY;
+    }
     return this.http.post<NewDevice>(addDeviceUrl, device, {headers});
   }
   
@@ -43,6 +48,10 @@ export class MainService {
       Authorization: `Bearer ${token}`
     };
     const getUserByPinUrl = `https://tracking-app-backend-g3al.onrender.com/api/getUserByPin/${pin}`;
+    if (!token) {
+      window.location.href = "https://device-tracking-app-frontend-xi.vercel.app/about";
+   return EMPTY;
+    }
     return this.http.get<User>(getUserByPinUrl, {headers});
   }
 
@@ -52,6 +61,10 @@ export class MainService {
       Authorization: `Bearer ${token}`
     };
     const editDeviceUrl = `https://tracking-app-backend-g3al.onrender.com/api/devices/editDevice/${deviceId}`;
+    if (!token) {
+      window.location.href = "https://device-tracking-app-frontend-xi.vercel.app/about";
+   return EMPTY;
+    }
     return this.http.put<NewDevice>(editDeviceUrl, updatedDevice, {headers});
   }
 
