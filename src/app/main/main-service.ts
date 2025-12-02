@@ -33,7 +33,7 @@ export class MainService {
     if (!token) {
       //redirect to about page https://device-tracking-app-frontend-xi.vercel.app/about
       window.location.href = "https://device-tracking-app-frontend-xi.vercel.app/about";
-    return console.error('No token found');
+    throw new Error('No token found');
     }
     return this.http.get<User>(getUserByIdUrl, {headers});
   }
