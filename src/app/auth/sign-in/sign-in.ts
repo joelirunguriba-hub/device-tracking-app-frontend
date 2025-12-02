@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LoadingSpinner } from '../../loading-spinner/loading-spinner';
 import { MainService } from '../../main/main-service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -31,7 +33,7 @@ export class SignIn {
     private fb: FormBuilder, 
     private authService: AuthService, 
     private router: Router, 
-    private mainService: MainService
+   private httpClient: HttpClient
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -39,38 +41,46 @@ export class SignIn {
     });
   }
 
-  onLogInUser() {
-    if (this.loginForm.valid) {
-      const user = this.loginForm.value;
-      this.loading = true;
+ onLogInUser() {
+  if (this.loginForm.valid) {
+    const user = this.loginForm.value;
+    this.loading = true;
 
-      this.authService.logInUser(user).subscribe({
-        next: (response: any) => {
-          console.log('Log in success', response);
-          if (response && response.token) {
-            localStorage.setItem('jwtToken', response.token); 
-          }
-          if (response && response.user && response.user._id) {
-            localStorage.setItem('userId', response.user._id);
-            localStorage.setItem('user', JSON.stringify(response.user));
-            console.log('User stored successfully:', response.user);
-          }
-          if (!response.user.deviceInfo.location) {
-            this.router.navigate(['/main']);
-          } else {
-            this.router.navigate(['/main/dashboard']);
-          }
-        },
-        error: (error: any) => {
-          console.log(error);
-        },
-        complete: () => {
-          this.loading = false;
-          console.log('Completed login');
-        },
-      });
+    const token = localStorage.getItem('jwtToken');  
+    let headers = {};
+    if (token) {
+      headers = { 
+        Authorization: `Bearer ${token}`  
+      };
     }
+    this.httpClient.post<any>('http://localhost:4000/api/userLogIn', user, { headers }).subscribe({
+      next: (response: any) => {
+        console.log('Log in success', response);
+        if (response && response.token) {
+          localStorage.setItem('jwtToken', response.token);  
+        }
+        if (response && response.user && response.user._id) {
+          localStorage.setItem('userId', response.user._id);
+          localStorage.setItem('user', JSON.stringify(response.user));
+          console.log('User stored successfully:', response.user);
+        }
+        if (!response.user.deviceInfo.location) {
+          this.router.navigate(['/main']);
+        } else {
+          this.router.navigate(['/main/dashboard']);
+        }
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+      complete: () => {
+        this.loading = false;
+        console.log('Completed login');
+      },
+    });
   }
+}
+
 
   goToAuth() {
     this.router.navigate(['/auth']);
