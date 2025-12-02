@@ -19,7 +19,7 @@ export class LocationService {
   
     if (!token) {
       window.location.href = "https://device-tracking-app-frontend-xi.vercel.app/about";
-      return;
+      return EMPTY;
     }
   
     this.socket = io('https://tracking-app-backend-g3al.onrender.com/', {
