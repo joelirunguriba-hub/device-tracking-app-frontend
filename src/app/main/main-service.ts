@@ -24,9 +24,13 @@ export class MainService {
   }
   
   getUserById(_id: string): Observable<User> {
-  
+  const token= localStorage.getItem('token')
+
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
     const getUserByIdUrl = `${this.globalUrl}/${_id}`;
-    return this.http.get<User>(getUserByIdUrl);
+    return this.http.get<User>(getUserByIdUrl, {headers});
   }
 
   getUserDataByPin(pin: string): Observable<User> {
