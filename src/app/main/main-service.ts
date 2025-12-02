@@ -15,10 +15,6 @@ export class MainService {
   
   addNewDevice(device: NewDevice, userId: string): Observable<NewDevice> {
     console.log("Adding new device:", device);
-    const token= localStorage.getItem('token')
-    const headers = {
-      Authorization: `Bearer ${token}`
-    };
     const addDeviceUrl = `https://tracking-app-backend-g3al.onrender.com/api/devices/registerMyDevice/${userId}`;
     return this.http.post<NewDevice>(addDeviceUrl, device, {headers});
   }
@@ -38,7 +34,7 @@ export class MainService {
       Authorization: `Bearer ${token}`
     };
     const getUserByPinUrl = `https://tracking-app-backend-g3al.onrender.com/api/getUserByPin/${pin}`;
-    
+
     return this.http.get<User>(getUserByPinUrl, {headers});
   }
 
