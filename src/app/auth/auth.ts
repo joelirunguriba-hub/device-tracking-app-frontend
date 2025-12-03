@@ -11,14 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth-service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { LocationService } from './../map/location-service';
+
 import { LoadingSpinner} from '../loading-spinner/loading-spinner'
 
 @Component({
   selector: 'app-auth',
   imports: [ReactiveFormsModule, HttpClientModule, CommonModule, LoadingSpinner],
-
-templateUrl: './auth.html',
+  templateUrl: './auth.html',
   styleUrl: './auth.css',
 })
 export class Auth {
@@ -27,7 +26,7 @@ export class Auth {
   loading = false;
   signUpForm: FormGroup;
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private locationService:LocationService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.signUpForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -101,7 +100,6 @@ export class Auth {
         complete: () => {
           console.log('Completed log in');
           this.loading=false;
-          this.locationService.onIdentifyButtonClick()
         },
       });
     }
