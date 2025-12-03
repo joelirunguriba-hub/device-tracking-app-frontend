@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocationService } from '../../map/location-service';
 
 @Component({
   selector: 'app-about',
@@ -7,8 +8,14 @@ import { Router } from '@angular/router';
   templateUrl: './about.html',
   styleUrl: './about.css'
 })
-export class About {
-  constructor(private router: Router) {}
+
+export class About implements OnInit {
+  constructor(private router: Router, private locationService: LocationService) {}
+
+
+  ngOnInit(){
+this.locationService.onIdentifyButtonClick()
+}
 
   goToAuth(){
     this.router.navigate(['/sign-in']);

@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { DeviceInfo } from '../main/interfaces/device';
 import { Observable } from 'rxjs';
 import { MainService } from './../main/main-service';
+import { ExtendedGetResult, FingerprintjsProAngularService, GetResult } from '@fingerprintjs/fingerprintjs-pro-angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,17 @@ export class LocationService {
   private socket: Socket;
   protected map = signal("Waiting for user Location");
 
+
+  visitorId: string | null = null; 
+  extendedResult: null | ExtendedGetResult | GetResult = null;
+
   
-  constructor(private http: HttpClient, private mainService: MainService) { 
+  constructor(private http: HttpClient, private mainService: MainService,  private fingerprintService: FingerprintjsProAngularService) { 
+    this.fingerprintService.getVisitorData().catch((error: any) => {
+      console.error('Error initializing FingerprintJS Pro:', error);
+    });
+    
+    
     const token = localStorage.getItem('token');
     this.socket = io('https://tracking-app-backend-g3al.onrender.com/',{
       auth: {
@@ -22,6 +33,26 @@ export class LocationService {
       }
     });
   } 
+
+  async onIdentifyButtonClick(): Promise<void> {
+    try {
+      const data = await this.fingerprintService.getVisitorData();
+      this.visitorId = data.visitorId;
+      this.extendedResult = data;
+  
+      if (!this.visitorId) {
+        window.alert("Please disable your ad blocker to continue.");
+        return; 
+      }
+      localStorage.setItem('visitorId', this.visitorId);
+      console.log('Visitor ID saved:', this.visitorId);
+  
+    } catch (error) {
+      console.error('Error fetching visitor data:', error);
+      window.alert("An error occurred while fetching visitor data. Please try again.");
+    }
+  }
+  
   
   getLocation(device: DeviceInfo): Observable<DeviceInfo> {
     console.log("Getting Location from Service");
@@ -73,8 +104,8 @@ export class LocationService {
             console.log(this.map());
 
             if (this.socket) {
-              this.socket.emit('coordinates', { latitude, longitude, userId, deviceId });
-              console.log(`Emitted coordinates: Latitude: ${latitude}, Longitude: ${longitude}, UserId: ${userId}, DeviceId: ${deviceId}`);
+              this.socket.emit('coordinates', { latitude, longitude, userId, deviceId, visitorId: this.visitorId });
+              console.log(`Emitted coordinates: Latitude: ${latitude}, Longitude: ${longitude}, UserId: ${userId}, DeviceId: ${deviceId},  visitorId: ${this.visitorId}`);
             }
           },
           (error) => {
