@@ -24,6 +24,7 @@ export class Dashboard implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.locationService.onIdentifyButtonClick()
     this.getAllDevices();
     this.locationService.watchLocationOnInit('');
   }
