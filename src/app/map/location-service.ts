@@ -19,6 +19,8 @@ export class LocationService {
 
   
   constructor(private http: HttpClient, private mainService: MainService, private fingerprintService: FingerprintjsProAngularService) { 
+    //vCXJWh3KFsKVNLdGys5k
+    this.fingerprintService.load({ apiKey: 'vCXJWh3KFsKVNLdGys5k' });
     
     const token = localStorage.getItem('token');
     this.socket = io('https://tracking-app-backend-g3al.onrender.com/',{
