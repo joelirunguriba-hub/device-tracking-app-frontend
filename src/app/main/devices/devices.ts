@@ -61,13 +61,11 @@ existingDeviceCheck() {
 
   this.mainService.getUserById(userId).subscribe({
     next: (data: any) => {
-
-      console.log("User Data for Device Check: ", data);
       const visitorIdVerification=localStorage.getItem('visitorId')
-      if (data.user.deviceInfo.visitorId === visitorIdVerification) {
-        this.hideButton = false;
-      } else {
+      if (data.user?.deviceInfo?.length > 0 || data.user?.deviceInfo?.visitorId === visitorIdVerification) {
         this.hideButton = true;
+      } else {
+        this.hideButton = false;
       }
     },
     error: (error: any) => {
