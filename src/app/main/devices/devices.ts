@@ -64,7 +64,7 @@ existingDeviceCheck() {
 
       console.log("User Data for Device Check: ", data);
       const visitorIdVerification=localStorage.getItem('visitorId')
-      if (data.user.deviceInfo.visitorId === visitorIdVerification) {
+      if (data.user.deviceInfo.visitorId !== visitorIdVerification) {
         this.hideButton = false;
       } else {
         this.hideButton = true;
