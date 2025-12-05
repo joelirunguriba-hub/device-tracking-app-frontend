@@ -10,6 +10,7 @@ export interface DeviceInfo {
     location?: Location[]; 
     status?: string;
     userId?: string;
+    visitorId?: string;
     createdAt?: string;
     updatedAt?: string;
     __v?: number;

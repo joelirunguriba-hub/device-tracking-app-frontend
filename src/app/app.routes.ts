@@ -9,6 +9,7 @@ import {Add} from './main/add/add'
 import {Notifications} from './main/notifications/notifications'
 import {About} from './home/about/about'
 import {SignIn} from './auth/sign-in/sign-in';
+import {ManageDevices} from './main/devices/manage-devices/manage-devices';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'map', component: Map },
   { path: 'about', component: About},
   {path: 'sign-in', component: SignIn},
+  {path: 'manage-devices', component: ManageDevices},
   {path: 'main', component: Main,
   children: [
     { path: '', redirectTo: 'devices', pathMatch: 'full' },
@@ -23,6 +25,7 @@ export const routes: Routes = [
     { path: 'devices', component: Devices },
     { path: 'add', component: Add },
     { path: 'notifications', component: Notifications },
+    
   ]  
 }
 ];
