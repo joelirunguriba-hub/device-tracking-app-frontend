@@ -64,8 +64,8 @@ export class SignIn {
         error: (error: any) => {
           console.log('Error:', error);
           Swal.fire({
-            title: 'Error',
-            text: 'Login failed. Invalid email or password.',
+            title: 'Oops!',
+            text: 'Invalid email or password.',
             icon: 'error',
             background: 'linear-gradient(135deg, #0a1b3d 0%, #162953 50%, #3a0d0d 100%)', 
             color: '#E1D4C1',               
